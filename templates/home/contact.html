@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact{% endblock title %}
+
+{% block content %}
+
+<!-- SECTION....................Contact Form Section Start.................. -->
+<section class="contact-form-section">
+
+    {% if messages %}
+        {% for message in messages  %}
+            {% if message.tags == 'success' %}
+                <div class="alert w-1/2 bg-yellow-500 bg-opacity-80 mx-auto mt-4 p-4">
+                    <p class="inline-block">Form submitted successfully.</p>
+                    <img class="inline-block ml-80" src="https://img.icons8.com/material-rounded/24/000000/ok--v1.png"/>
+                </div>
+            {% else %}
+                <div class="alert w-3/5 bg-yellow-500 bg-opacity-80 mx-auto mt-4 p-4">
+                    <p class="inline-block text-red-900">Form not submitted, Please fill your form correctly.</p>
+                    <img class="inline-block ml-72" src="https://img.icons8.com/material-rounded/24/E74C3C/cancel--v1.png"/>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <div class="contact-form mx-auto my-16 w-3/4 bg-zinc-900 bg-opacity-80 rounded-lg shadow-xl shadow-black">
+        <h3 class="text-center text-xl font-bold p-2 bg-yellow-500 rounded-lg">Contact Form</h3>
+        <form class="block my-4 p-8" method="post">
+            {% csrf_token %}
+            <input class="block w-full my-2 rounded-lg bg-zinc-800 focus:border-yellow-500" id="firstName" name="firstName" type="text" placeholder="First Name">
+            <input class="block w-full my-2 rounded-lg bg-zinc-800 focus:border-yellow-500" id="lastName" name="lastName" type="text" placeholder="Last Name">
+            <input class="block w-full my-2 rounded-lg bg-zinc-800 focus:border-yellow-500" id="rEmail" name="rEmail" type="email" placeholder="Email">
+            <input class="block w-full my-2 rounded-lg bg-zinc-800 focus:border-yellow-500" id="phone" name="phone" type="text" placeholder="Phone No">
+            <textarea class="block w-full my-2 rounded-lg bg-zinc-800 focus:border-yellow-500" id="query" name="query" type="text" placeholder="What Would you like us to answer?" name="" id="" cols="30" rows="5"></textarea>
+            <button class="bg-yellow-500 p-3 rounded-lg" id="rSubmit" name="rSubmit" type="submit">Submit</button>
+            <button class="bg-yellow-500 p-3 rounded-lg" id="rReset" name="rReset" type="reset">Reset</button>
+        </form>
+    </div>
+
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+</section>
+<!-- SECTION....................Contact Form Section End.................... -->
+
+{% endblock content %}
