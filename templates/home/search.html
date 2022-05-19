@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Search Results</title> {% endblock title %}
+
+{% block content %}
+
+{% load static %}
+
+<section class="search">
+
+    {% if post|length_is:"0" %}
+    <div class="mx-auto w-3/4 my-16">
+        <h3 class="text-yellow-500 text-3xl font-bold font-poppins">You searched for-{{ query }}</h3>
+        <p class="text-yellow-500 text-2xl font-bold font-poppins">Your search did not match any results.</p>     
+    </div>
+    {% endif %}
+
+    
+    <div class="mx-auto w-3/4 my-16">
+            <h3 class="text-yellow-500 text-3xl font-bold font-poppins">Search Results:</h3>     
+    </div>
+
+    <div class="mx-auto my-16">
+        {% for article in post  %}
+            <!-- ANCHOR............Blog Card................ -->
+        <div class="blog-card grid grid-cols-3 gap-4 w-3/4 mb-8 mx-auto bg-zinc-900 rounded-lg shadow-xl shadow-black">
+            <div class="blog-img">
+                <img class="rounded-lg" src="{{ article.blogImage.url }}" alt="...">
+            </div>
+            <div class="blog-paragraph px-4 col-span-2">
+                <h3 class="text-center text-2xl text-yellow-500 font-bold mt-4">{{ article.title }}</h3>
+                <p class="text-sm text-gray-300 mt-2">{{ article.date }}</p>
+                <p class="text-sm text-gray-300 mt-2">Author: {{ article.author }}</p>
+                <p class="text-sm text-gray-300 mt-2">{{ article.content|truncatechars:150 }}...<a
+                        class="text-yellow-500 font-bold" href="/blog/article/{{ article.srno }}">Read More</a></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock content %}
