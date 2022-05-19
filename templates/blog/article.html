@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Blog</title> {% endblock title %}
+
+{% block content %}
+
+{% load static %}
+
+{% comment %} SECTION- .............Article Start.............. {% endcomment %}
+<section class="article-section">
+    <div class="article mx-auto font-poppins bg-slate-900 bg-opacity-80 w-3/4 my-16 rounded-lg shadow-lg shadow-black">
+        <div class="article-img">
+            <img class="rounded-lg" src="{{ article.blogImage.url }}" alt="...">
+        </div>
+        <div class="article-body mt-5 p-8">
+            <h1 class="text-center text-3xl text-yellow-500 font-semibold bg-black mb-4 p-2 bg-opacity-80 rounded-lg">{{ article.title }}</h1>
+            <p class="text-gray-400 text-lg mb-2"><span class="text-red-600">Publish date:</span> {{ article.date }}</p>
+            <p class="text-gray-400 text-lg mb-2"><span class="text-red-600">Author:</span> {{ article.author }}</p>
+            <p class="text-gray-400 text-lg mb-2"><span class="text-red-600">Category:</span> {{ article.category }}</p>
+            <p class="text-white text-xl">{{ article.content }}</p>
+        </div>
+    </div>
+</section>
+{% comment %} SECTION- ..............Article End............... {% endcomment %}
+
+{% endblock content %}
